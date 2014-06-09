@@ -194,7 +194,8 @@ public class MiniController extends RelativeLayout implements IMiniController {
                 } catch (Exception e) {
                     LOGE(TAG, "setIcon(): Failed to load the image with url: " +
                             mIconUri + ", using the default one", e);
-                    bm = BitmapFactory.decodeResource(getResources(), R.drawable.dummy_album_art);
+//                    bm = BitmapFactory.decodeResource(getResources(), R.drawable.dummy_album_art);
+                    bm = null;
                 }
                 mIcon.post(new Runnable() {
 

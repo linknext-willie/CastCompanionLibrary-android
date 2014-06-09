@@ -245,6 +245,12 @@ public class VideoCastControllerFragment extends Fragment implements OnVideoCast
             mCastController.updateControllersStatus(true);
         }
 
+		@Override
+		public void onFailed(int resourceId, int statusCode) {
+			showErrorDialog(getString(resourceId) + ", code: " + statusCode);
+			super.onFailed(resourceId, statusCode);
+		}
+
     }
 
     private class UpdateSeekbarTask extends TimerTask {
@@ -488,8 +494,9 @@ public class VideoCastControllerFragment extends Fragment implements OnVideoCast
             mImageAsyncTask.cancel(true);
         }
         if (null == url) {
-            mCastController.setImage(BitmapFactory.decodeResource(getActivity().getResources(),
-                    R.drawable.dummy_album_art_large));
+//            mCastController.setImage(BitmapFactory.decodeResource(getActivity().getResources(),
+//                    R.drawable.dummy_album_art_large));
+        	mCastController.setImage(null);
             return;
         }
         if (null != mUrlAndBitmap && mUrlAndBitmap.isMatch(url)) {
@@ -533,6 +540,7 @@ public class VideoCastControllerFragment extends Fragment implements OnVideoCast
     public static class ErrorDialogFragment extends DialogFragment {
 
         private IVideoCastController mController;
+        private VideoCastManager mManager;
         private static final String MESSAGE = "message";
 
         public static ErrorDialogFragment newInstance(String message) {
@@ -546,6 +554,11 @@ public class VideoCastControllerFragment extends Fragment implements OnVideoCast
         @Override
         public void onAttach(Activity activity) {
             mController = (IVideoCastController) activity;
+            try {
+				mManager = VideoCastManager.getInstance(activity);
+			} catch (CastException e) {
+				e.printStackTrace();
+			}
             super.onAttach(activity);
             setCancelable(false);
         }
@@ -561,7 +574,8 @@ public class VideoCastControllerFragment extends Fragment implements OnVideoCast
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             sDialogCanceled = true;
-                            mController.closeActivity();
+//                            mController.closeActivity();
+                            mManager.disconnect();
                         }
                     })
                     .create();
