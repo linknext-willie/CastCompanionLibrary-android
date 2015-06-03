@@ -1722,15 +1722,17 @@ public class VideoCastManager extends BaseCastManager
                     imgUrl = new URL(images.get(0).getUrl().toString());
                 } else if (null != mContext) {
                     // we don't have a url for image so get a placeholder image from resources
-                    bm = BitmapFactory.decodeResource(mContext.getResources(),
-                            R.drawable.dummy_album_art_large);
+//                    bm = BitmapFactory.decodeResource(mContext.getResources(),
+//                            R.drawable.dummy_album_art_large);
+                	bm = null;
                 }
             } else if (!images.isEmpty()) {
                 imgUrl = new URL(images.get(0).getUrl().toString());
             } else {
                 // we don't have a url for image so get a placeholder image from resources
-                bm = BitmapFactory.decodeResource(mContext.getResources(),
-                        R.drawable.dummy_album_art_small);
+//                bm = BitmapFactory.decodeResource(mContext.getResources(),
+//                        R.drawable.dummy_album_art_small);
+            	bm = null;
             }
         } catch (MalformedURLException e) {
             LOGE(TAG, "Failed to get the url for images", e);

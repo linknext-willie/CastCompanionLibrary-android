@@ -10,7 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:scaleType="fitXY"
-        android:src="@drawable/video_placeholder_200x200" />
+        android:src="@drawable/video_placeholder_notification_drawer" />
 
     <TextView
         android:id="@+id/titleView"

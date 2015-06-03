@@ -10,7 +10,7 @@
         android:scaleType="fitXY"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/video_placeholder_200x200"/>
+        android:src="@drawable/video_placeholder_notification_drawer"/>
 
     <ImageView
         android:id="@+id/removeView"
